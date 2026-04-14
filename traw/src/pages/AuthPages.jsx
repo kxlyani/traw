@@ -9,16 +9,20 @@ export function LoginPage() {
   const navigate  = useNavigate();
   const [form, setForm]   = useState({ username: '', password: '' });
   const [error, setError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState([]);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); setError('');
+    setLoading(true); setError(''); setFieldErrors([]);
     try {
       await login(form);
       navigate('/');
     } catch (err) {
-      setError(err.response?.data?.message || 'Login failed');
+      const data = err.response?.data;
+      const errors = Array.isArray(data?.errors) ? data.errors : [];
+      setFieldErrors(errors);
+      setError(data?.message || 'Login failed');
     } finally {
       setLoading(false);
     }
@@ -62,10 +66,22 @@ export function LoginPage() {
                 placeholder="••••••••"
                 value={form.password}
                 onChange={e => setForm({ ...form, password: e.target.value })}
+                minLength={6}
                 required
               />
             </div>
-            {error && <p className="auth-error">{error}</p>}
+            {error && (
+              <div className="auth-error">
+                <p style={{ margin: 0 }}>{error}</p>
+                {fieldErrors.length > 0 && (
+                  <ul style={{ margin: '8px 0 0', paddingLeft: 18 }}>
+                    {fieldErrors.map((e, idx) => (
+                      <li key={idx}>{Object.values(e)[0]}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
             <button className="btn btn-saffron auth-submit" type="submit" disabled={loading}>
               {loading ? 'Signing in…' : 'Sign In →'}
             </button>
@@ -86,17 +102,21 @@ export function RegisterPage() {
   const navigate     = useNavigate();
   const [form, setForm]   = useState({ username: '', email: '', password: '' });
   const [error, setError] = useState('');
+  const [fieldErrors, setFieldErrors] = useState([]);
   const [success, setSuccess] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true); setError('');
+    setLoading(true); setError(''); setFieldErrors([]);
     try {
       await register(form);
       setSuccess(true);
     } catch (err) {
-      setError(err.response?.data?.message || 'Registration failed');
+      const data = err.response?.data;
+      const errors = Array.isArray(data?.errors) ? data.errors : [];
+      setFieldErrors(errors);
+      setError(data?.message || 'Registration failed');
     } finally {
       setLoading(false);
     }
@@ -150,6 +170,7 @@ export function RegisterPage() {
                 placeholder="hungry_traveler"
                 value={form.username}
                 onChange={e => setForm({ ...form, username: e.target.value })}
+                minLength={3}
                 required
               />
             </div>
@@ -170,10 +191,22 @@ export function RegisterPage() {
                 placeholder="••••••••"
                 value={form.password}
                 onChange={e => setForm({ ...form, password: e.target.value })}
+                minLength={6}
                 required
               />
             </div>
-            {error && <p className="auth-error">{error}</p>}
+            {error && (
+              <div className="auth-error">
+                <p style={{ margin: 0 }}>{error}</p>
+                {fieldErrors.length > 0 && (
+                  <ul style={{ margin: '8px 0 0', paddingLeft: 18 }}>
+                    {fieldErrors.map((e, idx) => (
+                      <li key={idx}>{Object.values(e)[0]}</li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            )}
             <button className="btn btn-saffron auth-submit" type="submit" disabled={loading}>
               {loading ? 'Creating account…' : 'Create Account →'}
             </button>

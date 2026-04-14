@@ -2,7 +2,6 @@ import User from "../models/user.models.js";
 import asyncHandler from "../utils/async-handler.js";
 import ApiError from "../utils/api-error.js";
 import jwt from "jsonwebtoken";
-import mongoose from "mongoose";
 
 export const verifyJWT = asyncHandler(async (req, res, next) => {
     const token =
@@ -27,6 +26,11 @@ export const verifyJWT = asyncHandler(async (req, res, next) => {
         req.user = user;
         next();
     } catch (error) {
-        throw new ApiError(401, "Unauthorized error", error);
+        throw new ApiError(
+            401,
+            "Unauthorized",
+            [{ message: error?.message || "Token verification failed" }],
+            error?.stack,
+        );
     }
 });

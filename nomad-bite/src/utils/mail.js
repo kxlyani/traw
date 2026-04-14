@@ -35,8 +35,8 @@ const sendEmail = async (options) => {
             from: '"Example Team" <team@example.com>', // sender address
             to: options.email, // list of recipients
             subject: options.subject, // subject line
-            text: emailBody, // plain text body
-            html: emailText, // HTML body
+            text: emailText, // plain text body
+            html: emailBody, // HTML body
         });
 
         console.log("Message sent: %s", info.messageId);

@@ -2,7 +2,7 @@ import User from "../models/user.models.js";
 import ApiResponse from "../utils/api-response.js";
 import ApiError from "../utils/api-error.js";
 import asyncHandler from "../utils/async-handler.js";
-import { VerificationEmail, sendEmail } from "../utils/mail.js";
+import { VerificationEmail, ForgotPasswordEmail, sendEmail } from "../utils/mail.js";
 import crypto from "crypto";
 import jwt from "jsonwebtoken";
 
@@ -21,6 +21,9 @@ const generateTokens = async (userId) => {
 };
 
 const registerUser = asyncHandler(async (req, res) => {
+    // #region agent log
+    fetch('http://127.0.0.1:7271/ingest/9233227c-b5d8-4a1d-84f7-08fd85596e5a',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'59e32c'},body:JSON.stringify({sessionId:'59e32c',runId:'pre-fix',hypothesisId:'A',location:'src/controllers/auth.controllers.js:registerUser:entry',message:'registerUser entry',data:{hasUsername:typeof req.body?.username==='string',hasEmail:typeof req.body?.email==='string',hasPassword:typeof req.body?.password==='string',usernameLen:typeof req.body?.username==='string'?req.body.username.length:null,emailLen:typeof req.body?.email==='string'?req.body.email.length:null},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion agent log
     // 1. get data
     const { username, email, password, role } = req.body;
 
@@ -42,6 +45,10 @@ const registerUser = asyncHandler(async (req, res) => {
         isEmailVerified: false,
     });
 
+    // #region agent log
+    fetch('http://127.0.0.1:7271/ingest/9233227c-b5d8-4a1d-84f7-08fd85596e5a',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'59e32c'},body:JSON.stringify({sessionId:'59e32c',runId:'pre-fix',hypothesisId:'B',location:'src/controllers/auth.controllers.js:registerUser:afterCreate',message:'registerUser created user',data:{userId:String(user?._id||''),isEmailVerified:!!user?.isEmailVerified},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion agent log
+
     // 4.1 generate tokens
     const { unhashedToken, hashedToken, tokenExpiry } =
         user.generateTemporaryToken();
@@ -51,6 +58,10 @@ const registerUser = asyncHandler(async (req, res) => {
     user.emailVerificationExpiry = tokenExpiry;
     await user.save({ validateBeforeSave: false });
 
+    // #region agent log
+    fetch('http://127.0.0.1:7271/ingest/9233227c-b5d8-4a1d-84f7-08fd85596e5a',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'59e32c'},body:JSON.stringify({sessionId:'59e32c',runId:'pre-fix',hypothesisId:'C',location:'src/controllers/auth.controllers.js:registerUser:beforeSendEmail',message:'registerUser before sendEmail',data:{hasSmtpHost:!!process.env.SMTP_HOST,hasSmtpPort:!!process.env.SMTP_PORT,hasSmtpUser:!!process.env.SMTP_USER,hasSmtpPass:!!process.env.SMTP_PASS},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion agent log
+
     await sendEmail({
         email: user?.email,
         subject: "Please verify your email",
@@ -59,6 +70,10 @@ const registerUser = asyncHandler(async (req, res) => {
             `${req.protocol}://${req.get("host")}/api/v1/users/verify-email/${unhashedToken}`,
         ),
     });
+
+    // #region agent log
+    fetch('http://127.0.0.1:7271/ingest/9233227c-b5d8-4a1d-84f7-08fd85596e5a',{method:'POST',headers:{'Content-Type':'application/json','X-Debug-Session-Id':'59e32c'},body:JSON.stringify({sessionId:'59e32c',runId:'pre-fix',hypothesisId:'C',location:'src/controllers/auth.controllers.js:registerUser:afterSendEmail',message:'registerUser after sendEmail',data:{ok:true},timestamp:Date.now()})}).catch(()=>{});
+    // #endregion agent log
 
     const createdUser = await User.findById(user._id).select(
         "-password -refreshToken -emailVerificationToken -emailVerificationExpiry",
@@ -283,7 +298,12 @@ const refreshAccessToken = asyncHandler(async (req, res) => {
                 }),
             );
     } catch (error) {
-        throw new ApiError(401, "Invalid refresh token", error);
+        throw new ApiError(
+            401,
+            "Invalid refresh token",
+            [{ message: error?.message || "Refresh token verification failed" }],
+            error?.stack,
+        );
     }
 });
 
@@ -297,12 +317,20 @@ const forgotPasswordRequest = asyncHandler(async (req, res) => {
     const { unhashedToken, hashedToken, tokenExpiry } =
         user.generateTemporaryToken();
 
-    user.sendEmail({
-        email: user?.email,
+    user.forgotPasswordToken = hashedToken;
+    user.forgotPasswordExpiry = tokenExpiry;
+    await user.save({ validateBeforeSave: false });
+
+    const forgotPasswordBaseUrl =
+        process.env.FORGOT_PASSWORD_URL ||
+        `${req.protocol}://${req.get("host")}/reset-password`;
+
+    await sendEmail({
+        email: user.email,
         subject: "Password reset request",
         mailgenContent: ForgotPasswordEmail(
             user.username,
-            `${process.env.FORGOT_PASSWORD_URL}/${unhashedToken}`,
+            `${forgotPasswordBaseUrl}/${unhashedToken}`,
         ),
     });
 
@@ -325,7 +353,7 @@ const resetForgotPassword = asyncHandler(async (req, res) => {
         forgotPasswordExpiry: { $gt: Date.now() },
     });
     if (!user) {
-        throw new ApiError(490, "Token is invalid or expired");
+        throw new ApiError(400, "Token is invalid or expired");
     }
 
     user.forgotPasswordExpiry = null;
@@ -369,7 +397,7 @@ const changePassword = asyncHandler(async (req, res) => {
     }
 
     user.password = newPassword;
-    user.save({ validateBeforeSave: false });
+    await user.save({ validateBeforeSave: false });
 
     return res
         .status(200)

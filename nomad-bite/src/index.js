@@ -6,6 +6,8 @@ dotenv.config({
   path: "./.env",
 });
 
+console.log("[debug-59e32c] backend boot", { cwd: process.cwd(), node: process.version });
+
 const port = process.env.PORT || 3000;
 
 connectDB()
