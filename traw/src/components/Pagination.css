@@ -1,0 +1,67 @@
+/* ── Pagination ────────────────────────────────────────────────────────────── */
+.pagination {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--sp-sm);
+  padding: var(--sp-2xl) 0;
+}
+
+.page-numbers {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.page-btn {
+  min-width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--ink);
+  padding: 0 10px;
+  transition: all 0.12s;
+  white-space: nowrap;
+}
+
+.page-btn:hover:not(:disabled) {
+  background: var(--ink);
+  color: var(--white);
+  transform: translate(-2px, -2px);
+  box-shadow: 3px 3px 0 var(--saffron);
+}
+
+.page-btn:disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  border-color: var(--cream-dark);
+}
+
+.page-btn.active {
+  background: var(--saffron);
+  border-color: var(--saffron);
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.ellipsis {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 32px;
+  height: 40px;
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--muted);
+  user-select: none;
+}
+
+@media (max-width: 600px) {
+  .page-btn { min-width: 36px; height: 36px; font-size: 11px; }
+}

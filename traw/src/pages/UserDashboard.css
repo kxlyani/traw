@@ -1,0 +1,291 @@
+/* ── User Dashboard ───────────────────────────────────────────────────────── */
+.dashboard {
+  min-height: 100vh;
+  background: var(--cream);
+}
+
+/* ── Profile Header ───────────────────────────────────────────────────────── */
+.dashboard-header {
+  background: var(--ink);
+  color: var(--white);
+  padding: var(--sp-2xl) 0;
+  border-bottom: 3px solid var(--saffron);
+}
+
+.profile-row {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xl);
+}
+
+.profile-avatar {
+  width: 88px;
+  height: 88px;
+  background: var(--saffron);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 44px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.profile-info {
+  flex: 1;
+}
+
+.profile-name {
+  font-size: clamp(32px, 4vw, 48px);
+  color: var(--white);
+  line-height: 1.0;
+  margin-bottom: 6px;
+}
+
+.profile-email {
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 14px;
+  margin-bottom: var(--sp-lg);
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+}
+
+.profile-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xl);
+  flex-wrap: wrap;
+}
+
+.profile-stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.profile-stat strong {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1;
+}
+
+.profile-stat span {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+}
+
+.profile-stat-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* ── Dashboard Body ───────────────────────────────────────────────────────── */
+.dashboard-body {
+  padding: var(--sp-2xl) var(--sp-lg);
+}
+
+/* ── Tab Navigation ───────────────────────────────────────────────────────── */
+.dashboard-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: var(--sp-xl);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dashboard-tab-btn {
+  padding: 14px 24px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 13px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  margin-bottom: -2px;
+  transition: color 0.15s;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.dashboard-tab-btn.active {
+  color: var(--ink);
+  border-bottom-color: var(--saffron);
+}
+
+.dashboard-tab-btn:hover:not(.active) {
+  color: var(--ink);
+}
+
+.tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  padding: 0 6px;
+  background: var(--cream-dark);
+  font-size: 11px;
+  font-weight: 700;
+  border-radius: 11px;
+  transition: background 0.15s;
+}
+
+.dashboard-tab-btn.active .tab-count {
+  background: var(--saffron);
+  color: var(--ink);
+}
+
+/* ── Saved Items Grid ─────────────────────────────────────────────────────── */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-lg);
+}
+
+/* ── Individual saved item wrapper ───────────────────────────────────────── */
+.saved-item-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.remove-saved-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+  padding: 8px;
+  background: none;
+  border: 1px solid var(--cream-dark);
+  font-size: 12px;
+  font-family: var(--font-mono);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.remove-saved-btn:hover {
+  background: #fee2e2;
+  border-color: var(--terracotta);
+  color: var(--terracotta);
+}
+
+/* ── Empty collection state ───────────────────────────────────────────────── */
+.dashboard-empty {
+  text-align: center;
+  padding: var(--sp-3xl) var(--sp-lg);
+  background: var(--white);
+  border: 2px dashed var(--cream-dark);
+}
+
+.dashboard-empty-icon {
+  font-size: 56px;
+  margin-bottom: var(--sp-md);
+  opacity: 0.5;
+}
+
+.dashboard-empty h3 {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: var(--sp-sm);
+}
+
+.dashboard-empty p {
+  color: var(--muted);
+  font-size: 15px;
+  margin-bottom: var(--sp-xl);
+}
+
+.dashboard-empty-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 28px;
+  background: var(--saffron);
+  border: 2px solid var(--saffron);
+  color: var(--ink);
+  font-size: 14px;
+  font-weight: 700;
+  text-decoration: none;
+  transition: all 0.15s;
+}
+
+.dashboard-empty-cta:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--white);
+  transform: translate(-2px, -2px);
+  box-shadow: 4px 4px 0 var(--ink);
+}
+
+/* ── Section heading inside tab panels ───────────────────────────────────── */
+.dashboard-section-heading {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--sp-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+}
+
+.dashboard-section-heading::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: var(--cream-dark);
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .profile-row {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .profile-avatar {
+    width: 72px;
+    height: 72px;
+    font-size: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .profile-stats {
+    gap: var(--sp-md);
+  }
+
+  .dashboard-tab-btn {
+    padding: 12px 14px;
+    font-size: 11px;
+  }
+}

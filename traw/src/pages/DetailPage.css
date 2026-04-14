@@ -1,0 +1,326 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   DetailPage.css — shared by DestinationPage, DishPage, RestaurantPage
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+.detail-page {
+  min-height: 100vh;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────────── */
+.detail-hero {
+  position: relative;
+  height: 520px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--ink);
+}
+.detail-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(15, 17, 23, 0.88) 35%,
+    rgba(15, 17, 23, 0.25) 100%
+  );
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.detail-hero-overlay .container {
+  padding-bottom: var(--sp-2xl);
+}
+
+.detail-heading {
+  font-size: clamp(44px, 6vw, 80px);
+  color: var(--white);
+  line-height: 1.0;
+  margin-top: var(--sp-sm);
+  margin-bottom: var(--sp-md);
+}
+
+.detail-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: var(--sp-sm);
+}
+.detail-tag {
+  background: rgba(232, 144, 10, 0.18);
+  border: 1px solid var(--saffron);
+  color: var(--saffron);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+}
+
+/* ── Dish/Restaurant hero image (full-width) ──────────────────────────────── */
+.dish-hero-img {
+  width: 100%;
+  height: 420px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ── Body layout ──────────────────────────────────────────────────────────── */
+.detail-body {
+  padding: var(--sp-2xl) var(--sp-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.detail-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--sp-2xl);
+  align-items: start;
+}
+
+/* ── Description ──────────────────────────────────────────────────────────── */
+.detail-description {
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--ink);
+  max-width: 680px;
+  margin-bottom: var(--sp-xl);
+  padding-bottom: var(--sp-xl);
+  border-bottom: 2px solid var(--cream-dark);
+}
+
+.detail-section {
+  margin-bottom: var(--sp-2xl);
+}
+
+/* ── Tabs ─────────────────────────────────────────────────────────────────── */
+.detail-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: var(--sp-xl);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.detail-tabs::-webkit-scrollbar { display: none; }
+
+.detail-tab {
+  padding: 12px 22px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  margin-bottom: -2px;
+  transition: color 0.15s;
+}
+.detail-tab:hover:not(.active) { color: var(--ink); }
+.detail-tab.active {
+  color: var(--ink);
+  border-bottom-color: var(--saffron);
+}
+
+/* Tab count badge */
+.tab-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 18px;
+  height: 18px;
+  background: var(--cream-dark);
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: var(--r-full);
+  margin-left: 6px;
+  padding: 0 4px;
+  transition: background 0.15s;
+}
+.detail-tab.active .tab-count {
+  background: var(--saffron);
+  color: var(--ink);
+}
+
+/* ── Section subheadings ──────────────────────────────────────────────────── */
+.section-subheading {
+  font-family: var(--font-display);
+  font-size: 26px;
+  font-weight: 700;
+  margin-bottom: var(--sp-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+}
+.section-subheading::after {
+  content: '';
+  flex: 1;
+  height: 2px;
+  background: var(--cream-dark);
+}
+
+/* ── Grids ────────────────────────────────────────────────────────────────── */
+.articles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-md);
+}
+
+/* ── Markets list ─────────────────────────────────────────────────────────── */
+.markets-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+.market-card {
+  background: var(--white);
+  border: 2px solid var(--ink);
+  padding: var(--sp-lg);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+.market-card:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-card);
+}
+.market-card h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+.market-card p { font-size: 14px; color: var(--muted); line-height: 1.6; }
+.market-location {
+  font-size: 12px !important;
+  color: var(--saffron) !important;
+  font-family: var(--font-mono);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 6px !important;
+}
+
+/* ── Ingredients ──────────────────────────────────────────────────────────── */
+.ingredients-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+}
+.ingredient-tag {
+  padding: 5px 14px;
+  border: 2px solid var(--ink);
+  background: var(--white);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--ink);
+}
+
+/* ── Avg rating ───────────────────────────────────────────────────────────── */
+.avg-rating-display {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-bottom: var(--sp-lg);
+}
+.big-star  { font-size: 32px; color: var(--saffron); line-height: 1; }
+.big-number {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 900;
+  line-height: 1;
+}
+.review-count { font-size: 14px; color: var(--muted); }
+
+/* ── Reviews list ─────────────────────────────────────────────────────────── */
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+  margin-top: var(--sp-lg);
+}
+
+.login-prompt {
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: var(--sp-md);
+}
+.login-prompt a { color: var(--saffron); font-weight: 700; }
+
+.no-content {
+  text-align: center;
+  padding: var(--sp-xl);
+  color: var(--muted);
+  font-style: italic;
+  font-size: 14px;
+  background: var(--cream-dark);
+  border: 2px dashed var(--cream-dark);
+}
+
+/* ── Sidebar ──────────────────────────────────────────────────────────────── */
+.detail-sidebar {
+  position: sticky;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+.sidebar-card {
+  background: var(--white);
+  border: 2px solid var(--ink);
+  overflow: hidden;
+}
+.sidebar-card h4 {
+  background: var(--ink);
+  color: var(--white);
+  padding: var(--sp-md) var(--sp-lg);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0;
+}
+.fact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px var(--sp-lg);
+  border-bottom: 1px solid var(--cream-dark);
+  font-size: 14px;
+}
+.fact-row:last-child { border-bottom: none; }
+.fact-row span  { color: var(--muted); }
+.fact-row strong { color: var(--ink); }
+
+.sidebar-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  border: 2px solid var(--ink);
+  overflow: hidden;
+}
+.gallery-thumb {
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+.gallery-thumb:hover { transform: scale(1.06); }
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .detail-layout { grid-template-columns: 1fr; }
+  .detail-sidebar { position: static; }
+  .articles-grid { grid-template-columns: 1fr; }
+  .detail-heading { font-size: 52px; }
+  .detail-hero { height: 420px; }
+}
+@media (max-width: 600px) {
+  .detail-hero { height: 320px; }
+  .detail-heading { font-size: 40px; }
+  .dish-hero-img { height: 260px; }
+  .detail-tab { padding: 10px 14px; font-size: 11px; }
+}

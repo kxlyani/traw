@@ -1,0 +1,399 @@
+/* ── Destination Detail Page ──────────────────────────────────────────────── */
+.destination-detail-page {
+  min-height: 100vh;
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────────── */
+.destination-hero {
+  position: relative;
+  height: 520px;
+  background-size: cover;
+  background-position: center;
+  background-color: var(--ink);
+}
+
+.destination-hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(15, 17, 23, 0.88) 35%,
+    rgba(15, 17, 23, 0.2) 100%
+  );
+}
+
+.destination-hero-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding-bottom: var(--sp-2xl);
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-left: var(--sp-lg);
+  padding-right: var(--sp-lg);
+}
+
+.destination-country-label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--saffron);
+  margin-bottom: var(--sp-sm);
+}
+
+.destination-title {
+  font-size: clamp(48px, 7vw, 88px);
+  color: var(--white);
+  line-height: 1.0;
+  margin-bottom: var(--sp-md);
+}
+
+.destination-hero-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: var(--sp-sm);
+}
+
+.destination-hero-tag {
+  background: rgba(232, 144, 10, 0.2);
+  border: 1px solid var(--saffron);
+  color: var(--saffron);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+}
+
+/* ── Body Layout ──────────────────────────────────────────────────────────── */
+.destination-body {
+  padding: var(--sp-2xl) var(--sp-lg);
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.destination-layout {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--sp-2xl);
+  align-items: start;
+}
+
+/* ── Description ──────────────────────────────────────────────────────────── */
+.destination-description {
+  font-size: 17px;
+  line-height: 1.85;
+  color: var(--ink);
+  max-width: 680px;
+  margin-bottom: var(--sp-xl);
+  padding-bottom: var(--sp-xl);
+  border-bottom: 2px solid var(--cream-dark);
+}
+
+/* ── Tabs ─────────────────────────────────────────────────────────────────── */
+.destination-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 2px solid var(--ink);
+  margin-bottom: var(--sp-xl);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.destination-tab-btn {
+  padding: 12px 22px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: var(--muted);
+  cursor: pointer;
+  white-space: nowrap;
+  margin-bottom: -2px;
+  transition: color 0.15s;
+}
+
+.destination-tab-btn.active {
+  color: var(--ink);
+  border-bottom-color: var(--saffron);
+}
+
+.destination-tab-btn:hover:not(.active) {
+  color: var(--ink);
+}
+
+/* Tab badge */
+.destination-tab-btn .tab-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  background: var(--cream-dark);
+  font-size: 10px;
+  font-weight: 700;
+  border-radius: 50%;
+  margin-left: 6px;
+  vertical-align: middle;
+  transition: background 0.15s;
+}
+
+.destination-tab-btn.active .tab-badge {
+  background: var(--saffron);
+  color: var(--ink);
+}
+
+/* ── Section headings ─────────────────────────────────────────────────────── */
+.destination-section-title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: var(--sp-lg);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-md);
+}
+
+.destination-section-title::after {
+  content: "";
+  flex: 1;
+  height: 2px;
+  background: var(--cream-dark);
+}
+
+/* ── Dishes/Restaurants grid ──────────────────────────────────────────────── */
+.destination-items-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-md);
+}
+
+/* ── Food Markets ─────────────────────────────────────────────────────────── */
+.food-markets-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+.food-market-item {
+  background: var(--white);
+  border: 2px solid var(--ink);
+  padding: var(--sp-lg);
+  display: grid;
+  grid-template-columns: 40px 1fr;
+  gap: var(--sp-md);
+  align-items: start;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.food-market-item:hover {
+  transform: translate(-2px, -2px);
+  box-shadow: var(--shadow-card);
+}
+
+.food-market-number {
+  font-family: var(--font-display);
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--cream-dark);
+  line-height: 1;
+}
+
+.food-market-item h3 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.food-market-item p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.food-market-location {
+  font-size: 12px !important;
+  color: var(--saffron) !important;
+  font-family: var(--font-mono);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-top: 6px !important;
+}
+
+/* ── Articles grid ────────────────────────────────────────────────────────── */
+.destination-articles-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--sp-md);
+}
+
+/* ── Reviews ──────────────────────────────────────────────────────────────── */
+.destination-reviews-section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-lg);
+}
+
+.reviews-summary {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-lg);
+  padding: var(--sp-lg);
+  background: var(--ink);
+  color: var(--white);
+  margin-bottom: var(--sp-md);
+}
+
+.reviews-summary-score {
+  font-family: var(--font-display);
+  font-size: 56px;
+  font-weight: 900;
+  color: var(--saffron);
+  line-height: 1;
+}
+
+.reviews-summary-label {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+/* ── Login prompt ─────────────────────────────────────────────────────────── */
+.login-prompt-box {
+  background: var(--pale-sky);
+  border: 2px solid var(--sky);
+  padding: var(--sp-lg) var(--sp-xl);
+  font-size: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--sp-md);
+  margin-bottom: var(--sp-lg);
+}
+
+.login-prompt-box a {
+  color: var(--sky);
+  font-weight: 700;
+  text-decoration: underline;
+}
+
+/* ── Sidebar ──────────────────────────────────────────────────────────────── */
+.destination-sidebar {
+  position: sticky;
+  top: 80px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+.sidebar-info-card {
+  background: var(--white);
+  border: 2px solid var(--ink);
+  overflow: hidden;
+}
+
+.sidebar-info-card-header {
+  background: var(--ink);
+  color: var(--white);
+  padding: var(--sp-md) var(--sp-lg);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.sidebar-fact-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px var(--sp-lg);
+  border-bottom: 1px solid var(--cream-dark);
+  font-size: 14px;
+}
+
+.sidebar-fact-row:last-child {
+  border-bottom: none;
+}
+
+.sidebar-fact-row span {
+  color: var(--muted);
+}
+
+.sidebar-fact-row strong {
+  color: var(--ink);
+}
+
+.sidebar-gallery {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4px;
+  border: 2px solid var(--ink);
+  overflow: hidden;
+}
+
+.sidebar-gallery-thumb {
+  aspect-ratio: 1;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.3s;
+}
+
+.sidebar-gallery-thumb:hover {
+  transform: scale(1.05);
+}
+
+/* ── No content state ─────────────────────────────────────────────────────── */
+.destination-no-content {
+  text-align: center;
+  padding: var(--sp-2xl);
+  color: var(--muted);
+  background: var(--cream-dark);
+  border: 2px dashed var(--cream-dark);
+  font-style: italic;
+  font-size: 15px;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .destination-layout {
+    grid-template-columns: 1fr;
+  }
+  .destination-sidebar {
+    position: static;
+  }
+  .destination-items-grid,
+  .destination-articles-grid {
+    grid-template-columns: 1fr;
+  }
+  .destination-title {
+    font-size: 52px;
+  }
+}
+
+@media (max-width: 600px) {
+  .destination-hero {
+    height: 420px;
+  }
+  .destination-tabs {
+    gap: 0;
+  }
+  .destination-tab-btn {
+    padding: 10px 14px;
+    font-size: 11px;
+  }
+}

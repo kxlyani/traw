@@ -1,0 +1,543 @@
+/* ═══════════════════════════════════════════════════════════════════════════
+   OtherSections.css
+   Covers: FeatureSection · MapSection · ExperienceSection
+           CommunitySection · NewsletterSection
+   ═══════════════════════════════════════════════════════════════════════════ */
+
+
+/* ── Feature Section ──────────────────────────────────────────────────────── */
+.feature-section {
+  padding: var(--sp-3xl) 0;
+  background: var(--cream-dark);
+}
+
+.feature-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3xl);
+  align-items: start;
+}
+
+/* Left prose */
+.feature-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.feature-heading {
+  font-size: clamp(28px, 3.5vw, 46px);
+  line-height: 1.1;
+  margin-top: var(--sp-sm);
+  margin-bottom: var(--sp-lg);
+}
+
+.feature-heading em {
+  font-style: italic;
+  color: var(--saffron);
+}
+
+.feature-desc {
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 400px;
+}
+
+/* 2×2 feature cards */
+.feature-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-md);
+}
+
+.feature-card {
+  background: var(--white);
+  border: 2px solid var(--ink);
+  padding: var(--sp-lg);
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.feature-card:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-card);
+}
+
+.feature-icon {
+  font-size: 28px;
+  line-height: 1;
+  margin-bottom: var(--sp-sm);
+  display: block;
+}
+
+.feature-card h3 {
+  font-family: var(--font-display);
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 8px;
+}
+
+.feature-card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+
+/* ── Map Section ──────────────────────────────────────────────────────────── */
+.map-section {
+  padding: var(--sp-3xl) 0;
+  background: var(--cream);
+}
+
+.map-header {
+  margin-bottom: var(--sp-xl);
+}
+
+.map-heading {
+  font-size: clamp(28px, 3.5vw, 46px);
+  margin-top: var(--sp-sm);
+}
+
+.map-heading em {
+  font-style: italic;
+  color: var(--saffron);
+}
+
+/* Map container */
+.map-wrap {
+  border: 2px solid var(--ink);
+  overflow: hidden;
+}
+
+.map-bg {
+  position: relative;
+  width: 100%;
+  padding-top: 46%;
+  background: #161b26;
+  overflow: hidden;
+}
+
+.world-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+}
+
+/* Map pins */
+.map-pin {
+  position: absolute;
+  transform: translate(-50%, -50%);
+  cursor: pointer;
+  z-index: 2;
+}
+
+.pin-dot {
+  width: 10px;
+  height: 10px;
+  background: var(--saffron);
+  border-radius: 50%;
+  border: 2px solid var(--white);
+  transition: transform 0.2s, background 0.2s;
+  margin: 0 auto;
+}
+
+.map-pin:hover .pin-dot {
+  transform: scale(1.6);
+  background: var(--white);
+}
+
+.pin-label {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: var(--saffron);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s;
+}
+
+.map-pin:hover .pin-label {
+  opacity: 1;
+}
+
+/* Map legend bar */
+.map-legend {
+  background: var(--saffron);
+  padding: var(--sp-md) var(--sp-xl);
+  display: flex;
+  align-items: center;
+  gap: var(--sp-xl);
+}
+
+.map-legend .section-label {
+  color: var(--ink);
+  margin-bottom: 0;
+}
+
+.legend-count {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+
+/* ── Experience Section ───────────────────────────────────────────────────── */
+.experience-section {
+  padding: var(--sp-3xl) 0;
+  background: var(--cream-dark);
+}
+
+.exp-heading {
+  font-size: clamp(28px, 3.5vw, 46px);
+  line-height: 1.1;
+  margin-top: var(--sp-sm);
+  margin-bottom: var(--sp-2xl);
+}
+
+.exp-heading em {
+  font-style: italic;
+  color: var(--saffron);
+}
+
+/* List of experience items */
+.exp-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+.exp-item {
+  display: grid;
+  grid-template-columns: 300px 1fr 64px;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  overflow: hidden;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.exp-item:hover {
+  transform: translate(-3px, -3px);
+  box-shadow: var(--shadow-card);
+}
+
+/* Image column */
+.exp-img-wrap {
+  position: relative;
+  overflow: hidden;
+  height: 200px;
+}
+
+.exp-img-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.45s ease;
+}
+
+.exp-item:hover .exp-img-wrap img {
+  transform: scale(1.06);
+}
+
+.exp-tag {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: var(--accent, var(--saffron));
+  color: var(--white);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 4px 12px;
+}
+
+/* Content column */
+.exp-content {
+  padding: var(--sp-xl) var(--sp-xl);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--sp-sm);
+}
+
+.exp-content h3 {
+  font-family: var(--font-display);
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.exp-content p {
+  font-size: 14px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.exp-link {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--saffron);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  text-decoration: none;
+  margin-top: var(--sp-sm);
+  transition: color 0.15s;
+}
+
+.exp-link:hover {
+  color: var(--ink);
+}
+
+/* Number column */
+.exp-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 38px;
+  font-weight: 900;
+  color: var(--cream-dark);
+  background: var(--cream);
+  border-left: 2px solid var(--ink);
+  user-select: none;
+}
+
+
+/* ── Community Section ────────────────────────────────────────────────────── */
+.community-section {
+  padding: var(--sp-3xl) 0;
+  background: var(--ink);
+  color: var(--white);
+}
+
+.community-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: var(--sp-3xl);
+  align-items: start;
+}
+
+.community-left {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.community-heading {
+  font-size: clamp(28px, 3.5vw, 46px);
+  color: var(--white);
+  line-height: 1.1;
+  margin-top: var(--sp-sm);
+  margin-bottom: var(--sp-md);
+}
+
+.community-heading em {
+  font-style: italic;
+  color: var(--saffron);
+}
+
+.community-desc {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 15px;
+  line-height: 1.8;
+  max-width: 360px;
+}
+
+/* Quotes column */
+.community-quotes {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+}
+
+.community-quote {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid var(--saffron);
+  padding: var(--sp-lg) var(--sp-xl);
+  margin: 0;
+  transition: background 0.2s;
+}
+
+.community-quote:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.community-quote p {
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.75;
+  font-style: italic;
+  margin-bottom: var(--sp-sm);
+}
+
+.community-quote footer {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+}
+
+.community-quote footer strong {
+  color: var(--saffron);
+  font-weight: 600;
+}
+
+
+/* ── Newsletter Section ───────────────────────────────────────────────────── */
+.newsletter-section {
+  padding: var(--sp-3xl) 0;
+  background: var(--cream-dark);
+}
+
+.newsletter-inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3xl);
+  align-items: center;
+  background: var(--ink);
+  color: var(--white);
+  border: 2px solid var(--ink);
+  padding: var(--sp-2xl) var(--sp-2xl);
+}
+
+/* Text side */
+.newsletter-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-sm);
+}
+
+.nl-heading {
+  font-size: clamp(28px, 3vw, 44px);
+  color: var(--white);
+  line-height: 1.05;
+}
+
+.nl-heading em {
+  font-style: italic;
+  color: var(--saffron);
+}
+
+.newsletter-text > p:last-child {
+  color: rgba(255, 255, 255, 0.55);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+/* Form side */
+.newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.nl-input-group {
+  display: flex;
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  overflow: hidden;
+  margin-bottom: var(--sp-sm);
+}
+
+.nl-input {
+  flex: 1;
+  padding: 14px 16px;
+  background: rgba(255, 255, 255, 0.07);
+  border: none;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 14px;
+  outline: none;
+  transition: background 0.15s;
+}
+
+.nl-input:focus {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.nl-input::placeholder {
+  color: rgba(255, 255, 255, 0.3);
+}
+
+.nl-note {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.3);
+  font-family: var(--font-mono);
+  letter-spacing: 0.5px;
+}
+
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+
+/* Feature section */
+@media (max-width: 960px) {
+  .feature-inner {
+    grid-template-columns: 1fr;
+  }
+  .feature-desc {
+    max-width: 100%;
+  }
+}
+
+@media (max-width: 600px) {
+  .feature-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Experience section */
+@media (max-width: 960px) {
+  .exp-item {
+    grid-template-columns: 1fr;
+  }
+  .exp-img-wrap {
+    height: 220px;
+  }
+  .exp-number {
+    display: none;
+  }
+}
+
+/* Community section */
+@media (max-width: 900px) {
+  .community-inner {
+    grid-template-columns: 1fr;
+  }
+  .community-desc {
+    max-width: 100%;
+  }
+}
+
+/* Newsletter section */
+@media (max-width: 900px) {
+  .newsletter-inner {
+    grid-template-columns: 1fr;
+    padding: var(--sp-xl);
+  }
+}
+
+@media (max-width: 600px) {
+  .nl-input-group {
+    flex-direction: column;
+  }
+  .nl-input-group .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}

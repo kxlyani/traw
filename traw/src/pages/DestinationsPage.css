@@ -1,0 +1,61 @@
+/* ── Destinations List Page ───────────────────────────────────────────────── */
+.destinations-page {
+  min-height: 100vh;
+}
+
+.destinations-page .list-page-hero {
+  position: relative;
+  overflow: hidden;
+}
+
+.destinations-page .list-page-hero::after {
+  content: "🌍";
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 120px;
+  opacity: 0.08;
+  pointer-events: none;
+}
+
+/* Country filter badge pills */
+.country-pills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-sm);
+  margin-bottom: var(--sp-xl);
+}
+
+.country-pill {
+  padding: 6px 14px;
+  background: var(--white);
+  border: 2px solid var(--ink);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.12s;
+}
+
+.country-pill:hover,
+.country-pill.active {
+  background: var(--ink);
+  color: var(--white);
+}
+
+/* Results count */
+.results-count {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: var(--sp-lg);
+}
+
+.results-count span {
+  color: var(--saffron);
+  font-weight: 600;
+}

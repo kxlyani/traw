@@ -1,0 +1,70 @@
+/* ── Review Form ───────────────────────────────────────────────────────────── */
+.review-form {
+  background: var(--cream-dark);
+  border: 2px solid var(--ink);
+  padding: var(--sp-xl);
+  margin-bottom: var(--sp-xl);
+}
+
+.review-form h4 {
+  font-family: var(--font-display);
+  font-size: 20px;
+  font-weight: 700;
+  margin-bottom: var(--sp-lg);
+}
+
+/* ── Star picker ──────────────────────────────────────────────────────────── */
+.star-picker {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-bottom: var(--sp-lg);
+}
+
+.star-btn {
+  background: none;
+  border: none;
+  font-size: 28px;
+  line-height: 1;
+  color: var(--cream-dark);
+  filter: drop-shadow(0 0 0 transparent);
+  transition: color 0.1s, transform 0.1s;
+  padding: 0 2px;
+}
+.star-btn:hover  { transform: scale(1.2); }
+.star-btn.active { color: var(--saffron); }
+
+.rating-label {
+  margin-left: var(--sp-sm);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--saffron);
+  font-weight: 600;
+}
+
+/* ── Textarea ─────────────────────────────────────────────────────────────── */
+.review-textarea {
+  width: 100%;
+  padding: var(--sp-md);
+  border: 2px solid var(--ink);
+  background: var(--white);
+  font-family: var(--font-body);
+  font-size: 14px;
+  line-height: 1.7;
+  resize: vertical;
+  outline: none;
+  transition: border-color 0.15s;
+  display: block;
+  margin-bottom: var(--sp-md);
+}
+.review-textarea:focus { border-color: var(--saffron); }
+
+/* ── Error ────────────────────────────────────────────────────────────────── */
+.form-error {
+  color: var(--terracotta);
+  font-size: 13px;
+  font-weight: 600;
+  margin-bottom: var(--sp-sm);
+}

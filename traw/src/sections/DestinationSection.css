@@ -1,0 +1,72 @@
+/* ── Destination Section ──────────────────────────────────────────────────── */
+.dest-section {
+  padding: var(--sp-3xl) 0;
+  background: var(--cream);
+}
+
+/* ── Section header: heading left, button right ───────────────────────────── */
+.section-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--sp-lg);
+  margin-bottom: var(--sp-2xl);
+}
+
+.dest-section-heading {
+  font-size: clamp(32px, 4vw, 52px);
+  line-height: 1.05;
+  margin-top: var(--sp-sm);
+}
+
+.dest-section-heading em {
+  font-style: italic;
+  color: var(--saffron);
+}
+
+/* ── Destinations grid ────────────────────────────────────────────────────── */
+.dest-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-lg);
+}
+
+/* ── Loading skeleton grid ────────────────────────────────────────────────── */
+.dest-grid-skeleton {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--sp-lg);
+}
+
+.skeleton-card {
+  height: 320px;
+  background: var(--cream-dark);
+  border: 2px solid var(--cream-dark);
+  animation: skeletonPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes skeletonPulse {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0.45; }
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .dest-grid,
+  .dest-grid-skeleton {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .dest-grid,
+  .dest-grid-skeleton {
+    grid-template-columns: 1fr;
+  }
+
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: var(--sp-md);
+  }
+}

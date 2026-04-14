@@ -1,0 +1,212 @@
+/* ── Hero Section ─────────────────────────────────────────────────────────── */
+.hero {
+  background: var(--ink);
+  color: var(--white);
+  padding: var(--sp-3xl) 0 0;
+  overflow: hidden;
+}
+
+/* ── Two-column layout ────────────────────────────────────────────────────── */
+.hero-layout {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--sp-lg) var(--sp-3xl);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--sp-3xl);
+  align-items: center;
+}
+
+/* ── Left: text block ─────────────────────────────────────────────────────── */
+.hero-text {
+  display: flex;
+  flex-direction: column;
+}
+
+.hero-heading {
+  font-size: clamp(44px, 6vw, 80px);
+  color: var(--white);
+  margin-bottom: var(--sp-lg);
+  line-height: 1.0;
+}
+
+.hero-heading em {
+  font-style: italic;
+  color: var(--saffron);
+  display: block;
+}
+
+.hero-sub {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 16px;
+  line-height: 1.8;
+  max-width: 440px;
+  margin-bottom: var(--sp-xl);
+}
+
+/* ── CTA buttons ──────────────────────────────────────────────────────────── */
+.hero-ctas {
+  display: flex;
+  gap: var(--sp-md);
+  flex-wrap: wrap;
+  margin-bottom: var(--sp-xl);
+}
+
+.hero-ctas .btn-outline {
+  border-color: rgba(255, 255, 255, 0.4);
+  color: var(--white);
+}
+
+.hero-ctas .btn-outline:hover {
+  background: var(--white);
+  border-color: var(--white);
+  color: var(--ink);
+}
+
+/* ── Stats row ────────────────────────────────────────────────────────────── */
+.hero-stats {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-lg);
+  flex-wrap: wrap;
+}
+
+.stat {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.stat strong {
+  font-family: var(--font-display);
+  font-size: 30px;
+  font-weight: 900;
+  color: var(--white);
+  line-height: 1;
+}
+
+.stat span {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  font-family: var(--font-mono);
+}
+
+.stat-divider {
+  width: 1px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.12);
+  flex-shrink: 0;
+}
+
+/* ── Right: image mosaic ──────────────────────────────────────────────────── */
+.hero-mosaic {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 240px 200px;
+  gap: 8px;
+}
+
+.mosaic-cell {
+  position: relative;
+  overflow: hidden;
+  background: #1a1f2a;
+}
+
+.mosaic-cell img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.mosaic-cell:hover img {
+  transform: scale(1.06);
+}
+
+.cell-1 { grid-column: 1; grid-row: 1; }
+.cell-2 { grid-column: 2; grid-row: 1; }
+.cell-3 { grid-column: 1; grid-row: 2; }
+.cell-4 { grid-column: 2; grid-row: 2; }
+
+.mosaic-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background: var(--saffron);
+  color: var(--ink);
+  font-family: var(--font-mono);
+  font-size: 10px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 5px 12px;
+  pointer-events: none;
+}
+
+/* ── Ticker bar ───────────────────────────────────────────────────────────── */
+.hero-ticker {
+  background: var(--saffron);
+  color: var(--ink);
+  padding: 11px 0;
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.ticker-item {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  padding: 0 28px;
+  flex-shrink: 0;
+  animation: ticker 35s linear infinite;
+  user-select: none;
+}
+
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+
+/* ── Fade-up animation ────────────────────────────────────────────────────── */
+.fade-up {
+  animation: fadeUp 0.55s ease both;
+}
+
+.fade-up-delay-1 { animation-delay: 0.1s; }
+.fade-up-delay-2 { animation-delay: 0.25s; }
+.fade-up-delay-3 { animation-delay: 0.4s; }
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(22px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────────── */
+@media (max-width: 960px) {
+  .hero-layout {
+    grid-template-columns: 1fr;
+    gap: var(--sp-2xl);
+  }
+  .hero-mosaic {
+    max-width: 520px;
+    grid-template-rows: 200px 170px;
+  }
+  .hero-heading { font-size: 52px; }
+}
+
+@media (max-width: 600px) {
+  .hero-layout { padding-bottom: var(--sp-2xl); }
+  .hero-heading { font-size: 40px; }
+  .hero-sub { font-size: 15px; }
+  .hero-mosaic { grid-template-rows: 160px 140px; gap: 6px; }
+  .hero-ctas { flex-direction: column; }
+  .hero-ctas .btn { width: 100%; justify-content: center; }
+  .hero-stats { gap: var(--sp-md); }
+  .stat strong { font-size: 24px; }
+}
